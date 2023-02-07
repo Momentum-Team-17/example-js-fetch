@@ -1,7 +1,7 @@
 const form = document.querySelector("#search-form");
 // get the form element on the page
-
 const baseUrl = "https://api.artic.edu/api/v1/artworks/search?q=";
+const container = document.querySelector("#artContainer");
 
 form.addEventListener("submit", function (event) {
   // listen for the search form being submitted
@@ -14,7 +14,7 @@ form.addEventListener("submit", function (event) {
 });
 
 function search(searchTerm) {
-  // put these actions in a function, so I can control when they fire
+  // put these actions in a function, so I can control when they fire and the search happens
   let searchUrl = `${baseUrl}${searchTerm}`;
   // combine base url with term from form to get search url
   console.log(searchUrl);
@@ -35,5 +35,17 @@ function search(searchTerm) {
       // when you have data from the above promise, console log it
       console.log("second .then executed");
       console.log("Here is what we got back from the API", resultData.data);
+      buildResultsHtml(resultData.data);
+      // call function to build HTML on the array I got back
     });
+}
+
+function buildResultsHtml(resultsArray) {
+  for (let art of resultsArray) {
+    let artDiv = document.createElement("div");
+    let titleEl = document.createElement("h2");
+    titleEl.innerText = art.title;
+    artDiv.appendChild(titleEl);
+    container.appendChild(artDiv);
+  }
 }
