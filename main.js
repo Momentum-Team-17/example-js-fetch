@@ -41,6 +41,7 @@ function search(searchTerm) {
 }
 
 function buildResultsHtml(resultsArray) {
+  // loop through the array of results and build html to display info on the page
   for (let art of resultsArray) {
     let artDiv = document.createElement("div");
     let titleEl = document.createElement("h2");
