@@ -41,12 +41,16 @@ function search(searchTerm) {
 }
 
 function buildResultsHtml(resultsArray) {
-  // loop through the array of results and build html to display info on the page
+  // loop through the array of results and build html to display select info from each result on the page
   for (let art of resultsArray) {
     let artDiv = document.createElement("div");
+    // build a div to hold the info for this result
     let titleEl = document.createElement("h2");
     titleEl.innerText = art.title;
+    // for each value we want to display from this result, build an HTML element and populate it
     artDiv.appendChild(titleEl);
+    // append the div for each value to the bigger div
     container.appendChild(artDiv);
+    // append the div with all this result's info to the page
   }
 }
